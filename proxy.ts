@@ -5,7 +5,7 @@ const ADMIN_PATHS = ["/admin"];
 const STUDENT_PATHS = ["/dashboard", "/luyen-tap", "/thanh-tich"];
 const AUTH_PATHS = ["/login", "/register"];
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   const isAdminPath = ADMIN_PATHS.some((p) => pathname.startsWith(p));
@@ -26,7 +26,7 @@ export async function middleware(req: NextRequest) {
     if (session.role !== "admin") return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
-  // Protect student dashboard
+  // Protect student routes
   if (isStudentPath) {
     if (!session) return NextResponse.redirect(new URL("/login", req.url));
   }
