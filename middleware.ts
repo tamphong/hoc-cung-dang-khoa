@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSessionFromRequest } from "./lib/auth";
 
 const ADMIN_PATHS = ["/admin"];
-const STUDENT_PATHS = ["/dashboard"];
+const STUDENT_PATHS = ["/dashboard", "/luyen-tap", "/thanh-tich"];
 const AUTH_PATHS = ["/login", "/register"];
 
 export async function middleware(req: NextRequest) {
@@ -35,5 +35,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/dashboard/:path*", "/login", "/register"],
+  matcher: ["/admin/:path*", "/dashboard/:path*", "/luyen-tap/:path*", "/luyen-tap", "/thanh-tich", "/login", "/register"],
 };
