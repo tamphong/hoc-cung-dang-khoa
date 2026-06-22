@@ -16,13 +16,13 @@ function createPrismaClient() {
   }
 
   // Turso / libsql (production): libsql://...
-  const { PrismaLibSQL } = require("@prisma/adapter-libsql");
+  const { PrismaLibSql } = require("@prisma/adapter-libsql");
   const { createClient } = require("@libsql/client");
   const client = createClient({
     url: process.env.DATABASE_URL!,
     authToken: process.env.TURSO_AUTH_TOKEN,
   });
-  const adapter = new PrismaLibSQL(client);
+  const adapter = new PrismaLibSql(client);
   return new PrismaClient({ adapter } as never);
 }
 

@@ -3,7 +3,7 @@
  * Run: DATABASE_URL=libsql://... TURSO_AUTH_TOKEN=... npx tsx prisma/seed-turso.ts
  */
 import { PrismaClient } from "../lib/generated/prisma/client";
-import { PrismaLibSQL } from "@prisma/adapter-libsql";
+import { PrismaLibSql } from "@prisma/adapter-libsql";
 import { createClient } from "@libsql/client";
 import bcrypt from "bcryptjs";
 
@@ -11,7 +11,7 @@ const client = createClient({
   url: process.env.DATABASE_URL!,
   authToken: process.env.TURSO_AUTH_TOKEN,
 });
-const adapter = new PrismaLibSQL(client);
+const adapter = new PrismaLibSql(client);
 const prisma = new PrismaClient({ adapter } as never);
 
 // Re-export same seed logic — import from seed.ts via a shared helper
