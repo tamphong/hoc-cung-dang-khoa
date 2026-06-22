@@ -36,8 +36,9 @@ export async function POST(req: NextRequest) {
       path: "/",
     });
     return res;
-  } catch (e) {
-    console.error(e);
-    return NextResponse.json({ error: "Lỗi server" }, { status: 500 });
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error("LOGIN ERROR:", msg);
+    return NextResponse.json({ error: "Lỗi server: " + msg }, { status: 500 });
   }
 }

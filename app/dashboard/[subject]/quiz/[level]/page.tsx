@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import Navbar from "@/components/NavbarServer";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 interface Question {

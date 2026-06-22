@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
-import Navbar from "@/components/NavbarServer";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getSubject } from "@/lib/subjects";
 import { saveResult } from "@/lib/scores";
