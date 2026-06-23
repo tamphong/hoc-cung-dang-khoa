@@ -118,7 +118,7 @@ export default async function SubjectPage({ params }: { params: Promise<{ subjec
                         </div>
                       ) : (
                         <Link
-                          href={`/dashboard/${subjectId}/quiz/${level}`}
+                          href={`/dashboard/${encodeURIComponent(subjectId)}/quiz/${level}`}
                           className="aspect-square rounded-xl flex flex-col items-center justify-center text-xs font-bold border-2 transition-all hover:scale-105"
                           style={
                             status === "completed"

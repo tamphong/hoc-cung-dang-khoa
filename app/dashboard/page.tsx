@@ -79,7 +79,7 @@ export default async function DashboardPage() {
                   return (
                     <Link
                       key={s.id}
-                      href={`/dashboard/${s.id}`}
+                      href={`/dashboard/${encodeURIComponent(s.id)}`}
                       className="bg-white rounded-2xl border-2 p-5 hover:shadow-lg hover:-translate-y-0.5 transition-all group"
                       style={{ borderColor: s.border }}
                     >

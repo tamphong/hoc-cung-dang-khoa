@@ -148,7 +148,7 @@ export default function QuizLevelPage() {
             <p className="text-slate-500 text-sm mb-6">{error}</p>
             <div className="flex gap-3 justify-center">
               <button onClick={loadQuiz} className="px-5 py-2 rounded-xl text-white font-semibold brand-gradient">Thử lại</button>
-              <Link href={`/dashboard/${subjectId}`} className="px-5 py-2 rounded-xl text-slate-600 bg-slate-100">Quay lại</Link>
+              <Link href={`/dashboard/${encodeURIComponent(subjectId)}`} className="px-5 py-2 rounded-xl text-slate-600 bg-slate-100">Quay lại</Link>
             </div>
           </div>
         </main>
@@ -217,12 +217,12 @@ export default function QuizLevelPage() {
                     🔄 Thử lại Level {level}
                   </button>
                   {passed && (
-                    <Link href={`/dashboard/${subjectId}/quiz/${newLevel}`}
+                    <Link href={`/dashboard/${encodeURIComponent(subjectId)}/quiz/${newLevel}`}
                       className="w-full py-3 rounded-xl font-semibold text-white text-center brand-gradient">
                       ▶ Tiếp tục Level {newLevel}
                     </Link>
                   )}
-                  <Link href={`/dashboard/${subjectId}`}
+                  <Link href={`/dashboard/${encodeURIComponent(subjectId)}`}
                     className="w-full py-3 rounded-xl font-semibold text-slate-600 bg-slate-100 text-center">
                     ← Về danh sách level
                   </Link>
