@@ -85,13 +85,6 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Demo accounts */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-xl text-xs text-blue-800 space-y-1">
-            <div className="font-semibold mb-2">Tài khoản thử nghiệm:</div>
-            <div>👤 Học sinh: <strong>hocsinh@demo.vn</strong> / student123</div>
-            <div>🔧 Admin: <strong>admin@dangkhoa.edu.vn</strong> / admin123</div>
-          </div>
-
           <div className="mt-6 text-center text-sm text-slate-500">
             Chưa có tài khoản?{" "}
             <Link href="/register" className="text-blue-600 font-medium hover:underline">
