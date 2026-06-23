@@ -25,7 +25,8 @@ type Phase = "loading" | "quiz" | "result" | "error";
 const LABELS = ["A", "B", "C", "D"];
 
 export default function QuizLevelPage() {
-  const { subject: subjectId, level: levelStr } = useParams<{ subject: string; level: string }>();
+  const { subject: rawSubjectId, level: levelStr } = useParams<{ subject: string; level: string }>();
+  const subjectId = decodeURIComponent(rawSubjectId ?? "");
   const level = parseInt(levelStr || "1");
   const router = useRouter();
 

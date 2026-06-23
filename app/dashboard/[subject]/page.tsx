@@ -6,7 +6,8 @@ import Navbar from "@/components/NavbarServer";
 import Footer from "@/components/Footer";
 
 export default async function SubjectPage({ params }: { params: Promise<{ subject: string }> }) {
-  const { subject: subjectId } = await params;
+  const { subject: rawSubjectId } = await params;
+  const subjectId = decodeURIComponent(rawSubjectId);
   const session = await getSession();
   if (!session) redirect("/login");
 
