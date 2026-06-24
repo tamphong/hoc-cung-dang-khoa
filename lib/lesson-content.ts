@@ -1,9 +1,17 @@
+export type Exercise = {
+  problem: string;
+  hint?: string;
+  steps: string[];
+  answer: string;
+};
+
 export type Topic = {
   title: string;
   theory: string[];
   formulas?: string[];
   videoTitle?: string;
   videoUrl?: string;
+  exercises?: Exercise[];
 };
 
 export type Chapter = {
@@ -24,163 +32,724 @@ function ytSearch(query: string) {
 const lessonContent: Record<string, SubjectLessons> = {
   Toán: {
     chapters: [
+      // ═══════════════════════════════════════════════════════
+      // CHƯƠNG 1: CĂN BẬC HAI – CĂN BẬC BA
+      // ═══════════════════════════════════════════════════════
       {
         id: "can-bac-hai",
         title: "Chương 1: Căn bậc hai – Căn bậc ba",
-        description: "Khái niệm, tính chất và ứng dụng của căn bậc hai, căn bậc ba",
+        description: "Khái niệm, tính chất và rút gọn biểu thức chứa căn bậc hai, căn bậc ba",
         topics: [
           {
             title: "Căn bậc hai và điều kiện xác định",
             theory: [
-              "√a xác định khi a ≥ 0",
-              "√(a²) = |a| (không phải a)",
-              "√a · √b = √(ab) với a, b ≥ 0",
+              "√a xác định (có nghĩa) khi a ≥ 0",
+              "√(a²) = |a| — không phải a (chú ý khi a < 0)",
+              "√a · √b = √(ab) với a ≥ 0, b ≥ 0",
               "√(a/b) = √a / √b với a ≥ 0, b > 0",
+              "Bình phương hai vế: cách khử dấu căn (cần đặt điều kiện)",
             ],
-            formulas: ["(√a)² = a (a ≥ 0)", "√(a²) = |a|", "√a · √b = √(ab)"],
-            videoTitle: "Căn bậc hai lớp 9 – Lý thuyết và bài tập",
+            formulas: [
+              "(√a)² = a  (a ≥ 0)",
+              "√(a²) = |a|",
+              "√a · √b = √(ab)",
+              "√a / √b = √(a/b)  (b > 0)",
+            ],
+            videoTitle: "Căn bậc hai – Lý thuyết và bài tập lớp 9",
             videoUrl: ytSearch("căn bậc hai lớp 9 lý thuyết bài tập"),
+            exercises: [
+              {
+                problem: "Tính: A = √49 + √(–3)² – √(5 – √25)",
+                hint: "Tính từng căn, nhớ √(a²) = |a|",
+                steps: [
+                  "√49 = 7",
+                  "√(–3)² = |–3| = 3",
+                  "√25 = 5, nên 5 – √25 = 5 – 5 = 0, √0 = 0",
+                  "A = 7 + 3 – 0 = 10",
+                ],
+                answer: "A = 10",
+              },
+              {
+                problem: "Tìm x biết: √(2x – 1) = 3",
+                hint: "Bình phương hai vế, chú ý điều kiện 2x – 1 ≥ 0",
+                steps: [
+                  "Điều kiện: 2x – 1 ≥ 0 ⟹ x ≥ 1/2",
+                  "Bình phương hai vế: 2x – 1 = 9",
+                  "2x = 10 ⟹ x = 5",
+                  "Kiểm tra: x = 5 ≥ 1/2 ✓ và √(2·5–1) = √9 = 3 ✓",
+                ],
+                answer: "x = 5",
+              },
+              {
+                problem: "Tính: B = √(3 + √5) · √(3 – √5)",
+                hint: "Dùng công thức √a · √b = √(ab) rồi hằng đẳng thức (a+b)(a–b)",
+                steps: [
+                  "B = √[(3 + √5)(3 – √5)]",
+                  "= √(3² – (√5)²)",
+                  "= √(9 – 5)",
+                  "= √4 = 2",
+                ],
+                answer: "B = 2",
+              },
+            ],
           },
           {
             title: "Rút gọn biểu thức chứa căn",
             theory: [
-              "Đưa thừa số ra ngoài dấu căn: √(a²b) = |a|√b",
-              "Trục căn thức ở mẫu: nhân cả tử và mẫu với liên hợp",
-              "Khử mẫu của biểu thức lấy căn",
+              "Đưa thừa số ra ngoài dấu căn: √(a²b) = |a|·√b (b ≥ 0)",
+              "Đưa thừa số vào trong dấu căn: a·√b = √(a²b) (a ≥ 0)",
+              "Khử mẫu: √(a/b) = √(ab)/b (a ≥ 0, b > 0)",
+              "Trục căn thức ở mẫu đơn giản: A/√B = A√B/B",
+              "Trục căn thức ở mẫu dạng liên hợp: nhân cả tử và mẫu với (√A ∓ √B)",
             ],
             formulas: [
               "A/√B = A√B/B",
+              "A/(√B + √C) = A(√B – √C)/(B – C)",
               "A/(√B – √C) = A(√B + √C)/(B – C)",
             ],
-            videoTitle: "Rút gọn biểu thức chứa căn lớp 9",
+            videoTitle: "Rút gọn biểu thức chứa căn bậc hai lớp 9",
             videoUrl: ytSearch("rút gọn biểu thức chứa căn lớp 9"),
+            exercises: [
+              {
+                problem: "Rút gọn: P = (√x – 1)/(√x + 1) + 2√x/(x – 1)  (x ≥ 0, x ≠ 1)",
+                hint: "Phân tích x – 1 = (√x – 1)(√x + 1), quy đồng mẫu",
+                steps: [
+                  "Nhận thấy: x – 1 = (√x – 1)(√x + 1)",
+                  "P = (√x–1)²/[(√x–1)(√x+1)] + 2√x/[(√x–1)(√x+1)]",
+                  "= [(√x–1)² + 2√x] / [(√x–1)(√x+1)]",
+                  "= [x – 2√x + 1 + 2√x] / (x – 1)",
+                  "= (x + 1) / (x – 1)",
+                ],
+                answer: "P = (x + 1)/(x – 1)",
+              },
+              {
+                problem: "Trục căn thức mẫu: C = 5/(3 – √2)",
+                hint: "Nhân tử và mẫu với biểu thức liên hợp (3 + √2)",
+                steps: [
+                  "C = 5(3 + √2) / [(3 – √2)(3 + √2)]",
+                  "= 5(3 + √2) / (9 – 2)",
+                  "= 5(3 + √2) / 7",
+                  "= (15 + 5√2) / 7",
+                ],
+                answer: "C = (15 + 5√2)/7",
+              },
+              {
+                problem: "Rút gọn: D = √(4 – 2√3) + √(4 + 2√3)",
+                hint: "Viết 4 – 2√3 = 3 – 2√3 + 1 = (√3 – 1)²",
+                steps: [
+                  "4 – 2√3 = 3 – 2√3 + 1 = (√3 – 1)² ⟹ √(4–2√3) = √3 – 1 (vì √3 > 1)",
+                  "4 + 2√3 = 3 + 2√3 + 1 = (√3 + 1)² ⟹ √(4+2√3) = √3 + 1",
+                  "D = (√3 – 1) + (√3 + 1) = 2√3",
+                ],
+                answer: "D = 2√3",
+              },
+            ],
           },
           {
             title: "Căn bậc ba",
             theory: [
-              "∛a là số x sao cho x³ = a (xác định với mọi a ∈ ℝ)",
+              "∛a là số x thỏa mãn x³ = a — xác định với mọi a ∈ ℝ (kể cả a < 0)",
+              "∛(–a) = –∛a (căn bậc ba là hàm lẻ)",
               "∛(ab) = ∛a · ∛b",
               "∛(a/b) = ∛a / ∛b (b ≠ 0)",
+              "Một số căn đặc biệt cần nhớ: ∛1=1, ∛8=2, ∛27=3, ∛64=4, ∛125=5",
             ],
-            videoTitle: "Căn bậc ba lớp 9",
-            videoUrl: ytSearch("căn bậc ba lớp 9"),
+            formulas: [
+              "(∛a)³ = a",
+              "∛(a³) = a",
+              "∛(ab) = ∛a · ∛b",
+            ],
+            videoTitle: "Căn bậc ba lớp 9 – Lý thuyết và bài tập",
+            videoUrl: ytSearch("căn bậc ba lớp 9 bài tập"),
+            exercises: [
+              {
+                problem: "Tính: E = ∛(–125) + ∛8 · ∛(1/8)",
+                steps: [
+                  "∛(–125) = –∛125 = –5",
+                  "∛8 · ∛(1/8) = ∛(8 · 1/8) = ∛1 = 1",
+                  "E = –5 + 1 = –4",
+                ],
+                answer: "E = –4",
+              },
+              {
+                problem: "Tìm x: ∛(x – 2) = 3",
+                steps: [
+                  "Lập phương hai vế: x – 2 = 3³ = 27",
+                  "x = 29",
+                ],
+                answer: "x = 29",
+              },
+            ],
           },
         ],
       },
+
+      // ═══════════════════════════════════════════════════════
+      // CHƯƠNG 2: HÀM SỐ y = ax² VÀ PHƯƠNG TRÌNH BẬC HAI
+      // ═══════════════════════════════════════════════════════
       {
         id: "ham-so-bac-hai",
         title: "Chương 2: Hàm số y = ax² (a ≠ 0)",
-        description: "Đồ thị, tính chất và ứng dụng hàm số bậc hai",
+        description: "Đồ thị parabol, tính chất hàm số bậc hai và liên hệ với phương trình",
         topics: [
           {
             title: "Hàm số y = ax² và đồ thị",
             theory: [
-              "Đồ thị là parabol đỉnh O(0,0), trục đối xứng là trục Oy",
-              "a > 0: parabol mở lên, hàm đồng biến khi x > 0, nghịch biến khi x < 0",
-              "a < 0: parabol mở xuống, hàm nghịch biến khi x > 0, đồng biến khi x < 0",
-              "|a| càng lớn thì parabol càng hẹp",
+              "Đồ thị là parabol, đỉnh tại gốc tọa độ O(0;0), trục đối xứng là trục Oy",
+              "a > 0: parabol mở lên (hình lõm), điểm thấp nhất là O",
+              "a < 0: parabol mở xuống (hình lồi), điểm cao nhất là O",
+              "|a| càng lớn → đồ thị càng 'hẹp' (dốc hơn)",
+              "Đồng biến khi x > 0 (nếu a > 0); nghịch biến khi x < 0 (nếu a > 0)",
+              "Cách vẽ: lập bảng giá trị với x = 0, ±1, ±2, ... rồi nối mượt",
             ],
-            videoTitle: "Hàm số y=ax² lớp 9 đồ thị và tính chất",
+            formulas: [
+              "y = ax²  (a ≠ 0)",
+              "Điểm thuộc đồ thị: M(x₀; ax₀²)",
+            ],
+            videoTitle: "Hàm số y = ax² – Đồ thị và tính chất lớp 9",
             videoUrl: ytSearch("hàm số y bằng ax2 lớp 9 đồ thị tính chất"),
+            exercises: [
+              {
+                problem: "Cho hàm số y = 2x². a) Vẽ đồ thị. b) Tìm tọa độ điểm M thuộc đồ thị có hoành độ x = –3. c) Tìm x để y = 8.",
+                steps: [
+                  "b) x = –3: y = 2·(–3)² = 2·9 = 18 → M(–3; 18)",
+                  "c) y = 8: 2x² = 8 ⟹ x² = 4 ⟹ x = ±2",
+                ],
+                answer: "M(–3; 18); x = 2 hoặc x = –2",
+              },
+              {
+                problem: "Điểm A(–2; m) thuộc đồ thị y = –x². Tìm m.",
+                steps: [
+                  "Vì A(–2; m) thuộc đồ thị y = –x²:",
+                  "m = –(–2)² = –4",
+                ],
+                answer: "m = –4",
+              },
+            ],
           },
         ],
       },
+
+      // ═══════════════════════════════════════════════════════
+      // CHƯƠNG 3: PHƯƠNG TRÌNH BẬC HAI MỘT ẨN
+      // ═══════════════════════════════════════════════════════
       {
         id: "phuong-trinh-bac-hai",
         title: "Chương 3: Phương trình bậc hai một ẩn",
-        description: "Giải phương trình bậc hai, hệ thức Vi-et",
+        description: "Công thức nghiệm, hệ thức Vi-et và các dạng bài tập",
         topics: [
           {
-            title: "Công thức nghiệm",
+            title: "Công thức nghiệm – Delta (Δ)",
             theory: [
-              "Dạng chuẩn: ax² + bx + c = 0 (a ≠ 0)",
-              "Δ = b² – 4ac",
-              "Δ > 0: hai nghiệm phân biệt x₁₂ = (–b ± √Δ) / 2a",
-              "Δ = 0: nghiệm kép x = –b / 2a",
-              "Δ < 0: vô nghiệm (thực)",
+              "Dạng tổng quát: ax² + bx + c = 0  (a ≠ 0)",
+              "Biệt thức: Δ = b² – 4ac",
+              "Δ > 0: phương trình có 2 nghiệm phân biệt",
+              "Δ = 0: phương trình có nghiệm kép x₁ = x₂ = –b/(2a)",
+              "Δ < 0: phương trình vô nghiệm thực",
+              "Công thức nghiệm thu gọn (khi b = 2b'): Δ' = b'² – ac, nghiệm x = (–b' ± √Δ')/a",
             ],
             formulas: [
               "Δ = b² – 4ac",
-              "x₁₂ = (–b ± √Δ) / 2a",
-              "Δ' = (b/2)² – ac (công thức nghiệm thu gọn)",
+              "x₁₂ = (–b ± √Δ) / (2a)  khi Δ ≥ 0",
+              "Δ' = b'² – ac  (b = 2b')",
+              "x₁₂ = (–b' ± √Δ') / a",
             ],
-            videoTitle: "Phương trình bậc hai lớp 9 công thức nghiệm",
-            videoUrl: ytSearch("phương trình bậc hai lớp 9 công thức nghiệm"),
+            videoTitle: "Phương trình bậc hai – Công thức nghiệm lớp 9",
+            videoUrl: ytSearch("phương trình bậc hai lớp 9 công thức nghiệm delta"),
+            exercises: [
+              {
+                problem: "Giải phương trình: 2x² – 5x + 3 = 0",
+                steps: [
+                  "a = 2, b = –5, c = 3",
+                  "Δ = (–5)² – 4·2·3 = 25 – 24 = 1 > 0",
+                  "√Δ = 1",
+                  "x₁ = (5 + 1)/4 = 6/4 = 3/2",
+                  "x₂ = (5 – 1)/4 = 4/4 = 1",
+                ],
+                answer: "x₁ = 3/2; x₂ = 1",
+              },
+              {
+                problem: "Giải phương trình: x² – 6x + 9 = 0",
+                steps: [
+                  "a = 1, b = –6, c = 9",
+                  "Δ = 36 – 36 = 0",
+                  "Nghiệm kép: x₁ = x₂ = 6/2 = 3",
+                ],
+                answer: "x = 3 (nghiệm kép)",
+              },
+              {
+                problem: "Giải phương trình: x² + x + 1 = 0",
+                steps: [
+                  "Δ = 1² – 4·1·1 = 1 – 4 = –3 < 0",
+                  "Vì Δ < 0, phương trình vô nghiệm thực",
+                ],
+                answer: "Phương trình vô nghiệm",
+              },
+              {
+                problem: "Giải bằng công thức nghiệm thu gọn: x² – 4x – 5 = 0",
+                hint: "b = –4 = 2·(–2), nên b' = –2",
+                steps: [
+                  "b' = –2, Δ' = (–2)² – 1·(–5) = 4 + 5 = 9",
+                  "√Δ' = 3",
+                  "x₁ = (2 + 3)/1 = 5",
+                  "x₂ = (2 – 3)/1 = –1",
+                ],
+                answer: "x₁ = 5; x₂ = –1",
+              },
+            ],
           },
           {
             title: "Hệ thức Vi-et và ứng dụng",
             theory: [
-              "Nếu x₁, x₂ là nghiệm của ax² + bx + c = 0 thì:",
-              "x₁ + x₂ = –b/a (tổng hai nghiệm)",
-              "x₁ · x₂ = c/a (tích hai nghiệm)",
-              "Ứng dụng: tìm nghiệm khi biết tổng/tích, lập phương trình biết nghiệm",
+              "Nếu x₁, x₂ là hai nghiệm của ax² + bx + c = 0 (a ≠ 0, Δ ≥ 0) thì:",
+              "  • Tổng: x₁ + x₂ = –b/a",
+              "  • Tích: x₁ · x₂ = c/a",
+              "Ứng dụng 1: Không cần giải PT, tính nhanh x₁+x₂, x₁x₂, x₁²+x₂²...",
+              "Ứng dụng 2: Tìm hai số khi biết tổng S và tích P → lập PT x² – Sx + P = 0",
+              "Ứng dụng 3: Lập phương trình bậc hai khi biết hai nghiệm",
+              "Điều kiện để PT có hai nghiệm cùng dấu: Δ ≥ 0, x₁x₂ > 0, x₁+x₂ cùng dấu với nghiệm",
             ],
-            formulas: ["x₁ + x₂ = –b/a", "x₁ · x₂ = c/a"],
-            videoTitle: "Hệ thức Vi-et lớp 9 và ứng dụng",
+            formulas: [
+              "x₁ + x₂ = –b/a",
+              "x₁ · x₂ = c/a",
+              "x₁² + x₂² = (x₁+x₂)² – 2x₁x₂",
+              "|x₁ – x₂| = √[(x₁+x₂)² – 4x₁x₂] = √Δ / |a|",
+            ],
+            videoTitle: "Hệ thức Vi-et lớp 9 – Lý thuyết và bài tập",
             videoUrl: ytSearch("hệ thức Vi-et lớp 9 ứng dụng bài tập"),
+            exercises: [
+              {
+                problem: "Cho PT: x² – 5x + 6 = 0. Không giải PT, hãy tính: x₁² + x₂², (x₁ – x₂)²",
+                hint: "Dùng Vi-et: S = x₁+x₂ = 5, P = x₁x₂ = 6",
+                steps: [
+                  "S = x₁+x₂ = 5; P = x₁x₂ = 6",
+                  "x₁²+x₂² = S² – 2P = 25 – 12 = 13",
+                  "(x₁–x₂)² = S² – 4P = 25 – 24 = 1 ⟹ |x₁–x₂| = 1",
+                ],
+                answer: "x₁²+x₂² = 13; |x₁–x₂| = 1",
+              },
+              {
+                problem: "Lập phương trình bậc hai có hai nghiệm là x₁ = 3, x₂ = –2",
+                steps: [
+                  "S = x₁ + x₂ = 3 + (–2) = 1",
+                  "P = x₁ · x₂ = 3·(–2) = –6",
+                  "Phương trình: x² – Sx + P = 0",
+                  "⟹ x² – x – 6 = 0",
+                ],
+                answer: "x² – x – 6 = 0",
+              },
+              {
+                problem: "Tìm m để PT x² – 2(m+1)x + m² – 1 = 0 có hai nghiệm dương phân biệt",
+                hint: "Cần: Δ > 0, S > 0, P > 0",
+                steps: [
+                  "a = 1, b = –2(m+1), c = m²–1",
+                  "Δ > 0: 4(m+1)² – 4(m²–1) > 0 ⟹ 4(m²+2m+1–m²+1) > 0 ⟹ 8m+8 > 0 ⟹ m > –1",
+                  "S = 2(m+1) > 0 ⟹ m > –1 (đã thỏa)",
+                  "P = m²–1 > 0 ⟹ m > 1 hoặc m < –1",
+                  "Kết hợp: m > 1",
+                ],
+                answer: "m > 1",
+              },
+            ],
           },
         ],
       },
+
+      // ═══════════════════════════════════════════════════════
+      // CHƯƠNG 4: HỆ PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN
+      // ═══════════════════════════════════════════════════════
       {
-        id: "hinh-hoc-duong-tron",
-        title: "Chương 4: Đường tròn",
-        description: "Tính chất đường tròn, tiếp tuyến, góc với đường tròn",
+        id: "he-phuong-trinh",
+        title: "Chương 4: Hệ phương trình bậc nhất hai ẩn",
+        description: "Giải hệ PT bằng phương pháp thế và phương pháp cộng đại số",
         topics: [
           {
-            title: "Đường tròn – Khái niệm cơ bản",
+            title: "Phương trình bậc nhất hai ẩn và hệ phương trình",
             theory: [
-              "Đường tròn tâm O bán kính R: tập hợp điểm cách O đúng R",
-              "Dây cung, đường kính, cung tròn",
-              "Quan hệ điểm và đường tròn: trong (d<R), trên (d=R), ngoài (d>R)",
-              "Dây cung vuông góc với bán kính tại trung điểm dây",
+              "PT bậc nhất hai ẩn: ax + by = c (a, b không đồng thời bằng 0)",
+              "Nghiệm là cặp số (x₀; y₀) thỏa mãn cả hai phương trình",
+              "Hệ có thể: vô nghiệm, có nghiệm duy nhất, vô số nghiệm",
+              "Nghĩa hình học: giao điểm của hai đường thẳng ax+by=c và a'x+b'y=c'",
             ],
-            videoTitle: "Đường tròn lớp 9 lý thuyết cơ bản",
-            videoUrl: ytSearch("đường tròn lớp 9 lý thuyết cơ bản"),
+            videoTitle: "Hệ phương trình bậc nhất hai ẩn lớp 9",
+            videoUrl: ytSearch("hệ phương trình bậc nhất hai ẩn lớp 9"),
+          },
+          {
+            title: "Phương pháp thế",
+            theory: [
+              "Bước 1: Từ một PT, biểu diễn một ẩn theo ẩn kia (ví dụ: x theo y)",
+              "Bước 2: Thế vào PT còn lại → PT một ẩn → giải",
+              "Bước 3: Tính ẩn còn lại, kết luận nghiệm",
+            ],
+            videoTitle: "Giải hệ PT bằng phương pháp thế lớp 9",
+            videoUrl: ytSearch("giải hệ phương trình phương pháp thế lớp 9"),
+            exercises: [
+              {
+                problem: "Giải hệ: { 2x + y = 5 // x – y = 1 }",
+                steps: [
+                  "Từ PT(2): x = y + 1",
+                  "Thế vào PT(1): 2(y+1) + y = 5 ⟹ 2y+2+y = 5 ⟹ 3y = 3 ⟹ y = 1",
+                  "x = y + 1 = 2",
+                ],
+                answer: "(x; y) = (2; 1)",
+              },
+              {
+                problem: "Giải hệ: { 3x – 2y = 7 // x + 4y = 5 }",
+                steps: [
+                  "Từ PT(2): x = 5 – 4y",
+                  "Thế vào PT(1): 3(5–4y) – 2y = 7 ⟹ 15–12y–2y = 7 ⟹ –14y = –8 ⟹ y = 4/7",
+                  "x = 5 – 4·(4/7) = 5 – 16/7 = 19/7",
+                ],
+                answer: "(x; y) = (19/7; 4/7)",
+              },
+            ],
+          },
+          {
+            title: "Phương pháp cộng đại số",
+            theory: [
+              "Bước 1: Nhân hai PT với hệ số thích hợp để hệ số của một ẩn bằng nhau (hoặc đối nhau)",
+              "Bước 2: Cộng (hoặc trừ) hai PT để triệt tiêu một ẩn",
+              "Bước 3: Giải PT một ẩn còn lại, rồi tìm ẩn kia",
+              "Mẹo: Chọn ẩn có hệ số nhỏ để nhân cho thuận tiện",
+            ],
+            videoTitle: "Giải hệ PT phương pháp cộng đại số lớp 9",
+            videoUrl: ytSearch("giải hệ phương trình phương pháp cộng đại số lớp 9"),
+            exercises: [
+              {
+                problem: "Giải hệ: { 3x + 2y = 8 // 3x – y = 5 }",
+                steps: [
+                  "Trừ PT(2) khỏi PT(1): (3x+2y) – (3x–y) = 8–5 ⟹ 3y = 3 ⟹ y = 1",
+                  "Thế y = 1 vào PT(2): 3x – 1 = 5 ⟹ 3x = 6 ⟹ x = 2",
+                ],
+                answer: "(x; y) = (2; 1)",
+              },
+              {
+                problem: "Giải hệ: { 2x + 3y = 12 // 5x – 2y = 1 }",
+                hint: "Nhân PT(1) với 2 và PT(2) với 3 để triệt tiêu y",
+                steps: [
+                  "PT(1)×2: 4x + 6y = 24",
+                  "PT(2)×3: 15x – 6y = 3",
+                  "Cộng: 19x = 27 ⟹ x = 27/19",
+                  "2·(27/19) + 3y = 12 ⟹ 3y = 12 – 54/19 = 174/19 ⟹ y = 58/19",
+                ],
+                answer: "(x; y) = (27/19; 58/19)",
+              },
+              {
+                problem: "Bài toán thực tế: Một lớp có 38 học sinh. Số học sinh nam nhiều hơn nữ là 4. Tìm số nam, nữ.",
+                hint: "Đặt x = số nam, y = số nữ. Lập hệ PT",
+                steps: [
+                  "Đặt x = số học sinh nam, y = số học sinh nữ (x, y nguyên dương)",
+                  "PT(1): x + y = 38 (tổng số HS)",
+                  "PT(2): x – y = 4 (nam nhiều hơn nữ là 4)",
+                  "Cộng hai PT: 2x = 42 ⟹ x = 21",
+                  "y = 38 – 21 = 17",
+                ],
+                answer: "21 nam, 17 nữ",
+              },
+            ],
+          },
+        ],
+      },
+
+      // ═══════════════════════════════════════════════════════
+      // CHƯƠNG 5: HỆ THỨC LƯỢNG TRONG TAM GIÁC VUÔNG & TỈ SỐ LƯỢNG GIÁC
+      // ═══════════════════════════════════════════════════════
+      {
+        id: "he-thuc-luong-tg-vuong",
+        title: "Chương 5: Hệ thức lượng trong tam giác vuông – Tỉ số lượng giác",
+        description: "Các hệ thức về cạnh – đường cao và tỉ số lượng giác của góc nhọn",
+        topics: [
+          {
+            title: "Hệ thức về cạnh và đường cao trong tam giác vuông",
+            theory: [
+              "Tam giác vuông ABC, góc A = 90°, đường cao AH (H ∈ BC)",
+              "BC = a, AB = c, AC = b, AH = h, BH = c', HC = b'",
+              "Hệ thức 1 (định lý Pythagore): a² = b² + c²",
+              "Hệ thức 2: b² = a·b' (bình phương cạnh góc vuông = tích cạnh huyền với hình chiếu cạnh đó lên huyền)",
+              "Hệ thức 3: c² = a·c'",
+              "Hệ thức 4: h² = b'·c' (bình phương đường cao = tích hai hình chiếu)",
+              "Hệ thức 5: b·c = a·h (tích hai cạnh góc vuông = tích cạnh huyền với đường cao)",
+            ],
+            formulas: [
+              "a² = b² + c²",
+              "b² = a·b'; c² = a·c'",
+              "h² = b'·c'",
+              "b·c = a·h",
+              "1/h² = 1/b² + 1/c²",
+            ],
+            videoTitle: "Hệ thức lượng tam giác vuông lớp 9",
+            videoUrl: ytSearch("hệ thức lượng trong tam giác vuông lớp 9"),
+            exercises: [
+              {
+                problem: "Tam giác vuông ABC, góc A = 90°, AB = 6, AC = 8. Tính BC, AH (H là chân đường cao từ A).",
+                steps: [
+                  "BC² = AB² + AC² = 36 + 64 = 100 ⟹ BC = 10",
+                  "AH = AB·AC / BC = 6·8 / 10 = 4,8",
+                ],
+                answer: "BC = 10; AH = 4,8",
+              },
+              {
+                problem: "Tam giác vuông, cạnh huyền a = 13, đường cao h = 5. Tính hai cạnh góc vuông b và c.",
+                hint: "Dùng: bc = ah và b²+c² = a²",
+                steps: [
+                  "bc = ah = 13·5 = 65",
+                  "b² + c² = 13² = 169",
+                  "(b + c)² = b²+c²+2bc = 169 + 130 = 299 ⟹ b+c = √299",
+                  "(b – c)² = 169 – 130 = 39 ⟹ |b–c| = √39",
+                  "b và c là nghiệm của t² – (b+c)t + bc = 0: t² – √299·t + 65 = 0",
+                ],
+                answer: "b + c = √299 ≈ 17,3; b·c = 65",
+              },
+            ],
+          },
+          {
+            title: "Tỉ số lượng giác của góc nhọn",
+            theory: [
+              "Trong tam giác vuông ABC, góc A = 90°, xét góc nhọn B:",
+              "  sin B = cạnh đối / cạnh huyền = AC/BC = b/a",
+              "  cos B = cạnh kề / cạnh huyền = AB/BC = c/a",
+              "  tan B = cạnh đối / cạnh kề = AC/AB = b/c",
+              "  cot B = cạnh kề / cạnh đối = AB/AC = c/b",
+              "Quan hệ: sin²α + cos²α = 1 (hằng đẳng thức lượng giác cơ bản)",
+              "tan α = sin α / cos α; cot α = cos α / sin α",
+              "Góc phụ nhau (α + β = 90°): sin α = cos β; tan α = cot β",
+            ],
+            formulas: [
+              "sin²α + cos²α = 1",
+              "tan α = sin α / cos α",
+              "cot α = 1 / tan α",
+              "sin(90°–α) = cos α",
+              "tan(90°–α) = cot α",
+            ],
+            videoTitle: "Tỉ số lượng giác góc nhọn lớp 9",
+            videoUrl: ytSearch("tỉ số lượng giác góc nhọn lớp 9 sin cos tan"),
+            exercises: [
+              {
+                problem: "Cho sin α = 3/5. Tính cos α, tan α, cot α.",
+                hint: "Dùng sin²α + cos²α = 1",
+                steps: [
+                  "cos²α = 1 – sin²α = 1 – 9/25 = 16/25 ⟹ cos α = 4/5 (α nhọn nên > 0)",
+                  "tan α = sin α / cos α = (3/5)/(4/5) = 3/4",
+                  "cot α = 1/tan α = 4/3",
+                ],
+                answer: "cos α = 4/5; tan α = 3/4; cot α = 4/3",
+              },
+              {
+                problem: "Tam giác vuông ABC, góc C = 90°, BC = 5, AC = 12. Tính sin A, cos A, tan B.",
+                steps: [
+                  "AB = √(BC² + AC²) = √(25 + 144) = √169 = 13",
+                  "sin A = BC/AB = 5/13 (cạnh đối góc A là BC)",
+                  "cos A = AC/AB = 12/13",
+                  "tan B = AC/BC = 12/5 (góc B, cạnh đối là AC, cạnh kề là BC)",
+                ],
+                answer: "sin A = 5/13; cos A = 12/13; tan B = 12/5",
+              },
+              {
+                problem: "Tính: A = sin 30° · cos 60° + sin 60° · cos 30°",
+                hint: "Dùng giá trị bảng: sin 30°=1/2, cos 30°=√3/2, sin 60°=√3/2, cos 60°=1/2",
+                steps: [
+                  "A = (1/2)·(1/2) + (√3/2)·(√3/2)",
+                  "= 1/4 + 3/4",
+                  "= 1",
+                  "(Đây chính là sin(30°+60°) = sin 90° = 1, xác nhận công thức cộng)",
+                ],
+                answer: "A = 1",
+              },
+            ],
+          },
+          {
+            title: "Bảng giá trị lượng giác thường dùng",
+            theory: [
+              "sin 0° = 0;  cos 0° = 1;  tan 0° = 0",
+              "sin 30° = 1/2;  cos 30° = √3/2;  tan 30° = √3/3 ≈ 0,577",
+              "sin 45° = √2/2;  cos 45° = √2/2;  tan 45° = 1",
+              "sin 60° = √3/2;  cos 60° = 1/2;  tan 60° = √3 ≈ 1,732",
+              "sin 90° = 1;  cos 90° = 0;  tan 90° không xác định",
+              "Khi α tăng từ 0° → 90°: sin tăng, cos giảm, tan tăng",
+            ],
+            videoTitle: "Bảng lượng giác sin cos tan – Cách học thuộc lớp 9",
+            videoUrl: ytSearch("bảng lượng giác sin cos tan cot lớp 9 cách nhớ"),
+          },
+        ],
+      },
+
+      // ═══════════════════════════════════════════════════════
+      // CHƯƠNG 6: ĐƯỜNG TRÒN
+      // ═══════════════════════════════════════════════════════
+      {
+        id: "duong-tron",
+        title: "Chương 6: Đường tròn",
+        description: "Tính chất đường tròn, tiếp tuyến và góc với đường tròn",
+        topics: [
+          {
+            title: "Đường tròn – Quan hệ đường thẳng và đường tròn",
+            theory: [
+              "Đường tròn (O; R): tập hợp các điểm cách O đúng bằng R",
+              "Điểm M và đường tròn: trong (OM < R), trên (OM = R), ngoài (OM > R)",
+              "Đường thẳng và đường tròn (d = khoảng cách từ tâm đến đường thẳng):",
+              "  • d < R: cắt (cát tuyến) — hai điểm chung",
+              "  • d = R: tiếp xúc (tiếp tuyến) — một điểm chung",
+              "  • d > R: không giao nhau — không có điểm chung",
+              "Dây cung vuông góc với bán kính tại trung điểm của dây",
+            ],
+            videoTitle: "Đường tròn lớp 9 – Lý thuyết cơ bản",
+            videoUrl: ytSearch("đường tròn lớp 9 lý thuyết cơ bản quan hệ đường thẳng"),
+            exercises: [
+              {
+                problem: "Đường tròn (O; 5cm). Điểm A cách O là 3cm; điểm B cách O là 5cm; điểm C cách O là 7cm. Điểm nào trong, trên, ngoài đường tròn?",
+                steps: [
+                  "OA = 3 < R = 5: A nằm trong đường tròn",
+                  "OB = 5 = R = 5: B nằm trên đường tròn",
+                  "OC = 7 > R = 5: C nằm ngoài đường tròn",
+                ],
+                answer: "A trong; B trên; C ngoài đường tròn",
+              },
+            ],
+          },
+          {
+            title: "Tiếp tuyến của đường tròn",
+            theory: [
+              "Tiếp tuyến tại điểm M: đường thẳng vuông góc với bán kính OM tại M",
+              "Từ điểm A ngoài đường tròn có đúng 2 tiếp tuyến AM₁ và AM₂",
+              "Tính chất hai tiếp tuyến từ một điểm ngoài: AM₁ = AM₂ (bằng nhau)",
+              "Và OA là tia phân giác của góc M₁OM₂ và AM₁AM₂",
+              "Độ dài tiếp tuyến: AM = √(OA² – R²)",
+            ],
+            formulas: [
+              "AM ⊥ OM tại M (tiếp tuyến ⊥ bán kính)",
+              "AM₁ = AM₂ (hai tiếp tuyến từ ngoài)",
+              "AM = √(OA² – R²)",
+            ],
+            videoTitle: "Tiếp tuyến đường tròn lớp 9",
+            videoUrl: ytSearch("tiếp tuyến đường tròn lớp 9 tính chất"),
+            exercises: [
+              {
+                problem: "Từ điểm A cách tâm O một khoảng OA = 10cm, kẻ tiếp tuyến AM với đường tròn (O; 6cm). Tính AM.",
+                steps: [
+                  "AM ⊥ OM, tam giác OMA vuông tại M",
+                  "AM² = OA² – OM² = 100 – 36 = 64",
+                  "AM = 8cm",
+                ],
+                answer: "AM = 8 cm",
+              },
+            ],
           },
           {
             title: "Góc với đường tròn",
             theory: [
-              "Góc ở tâm bằng số đo cung bị chắn",
-              "Góc nội tiếp bằng nửa cung bị chắn",
-              "Góc nội tiếp cùng chắn một cung thì bằng nhau",
-              "Góc nội tiếp chắn nửa đường tròn = 90°",
+              "Góc ở tâm: đỉnh trùng tâm O; số đo = số đo cung bị chắn",
+              "Góc nội tiếp: đỉnh trên đường tròn; số đo = ½ số đo cung bị chắn",
+              "Các góc nội tiếp cùng chắn một cung thì bằng nhau",
+              "Góc nội tiếp chắn nửa đường tròn (đường kính) = 90°",
+              "Góc tạo bởi tiếp tuyến và dây cung = ½ số đo cung bị chắn",
+              "Tứ giác nội tiếp: tổng hai góc đối diện = 180°",
             ],
             formulas: [
-              "∠nội tiếp = (1/2) · cung bị chắn",
-              "∠ở tâm = cung bị chắn",
+              "∠nội tiếp = ½ · sđ(cung bị chắn)",
+              "∠ở tâm = sđ(cung bị chắn)",
+              "∠A + ∠C = 180° (tứ giác nội tiếp, A và C đối nhau)",
             ],
-            videoTitle: "Góc nội tiếp đường tròn lớp 9",
-            videoUrl: ytSearch("góc nội tiếp đường tròn lớp 9"),
+            videoTitle: "Góc nội tiếp – Góc ở tâm đường tròn lớp 9",
+            videoUrl: ytSearch("góc nội tiếp góc ở tâm đường tròn lớp 9"),
+            exercises: [
+              {
+                problem: "Cho đường tròn (O). Cung AB = 120°. Tính góc ở tâm AOB và góc nội tiếp ACB (C trên cung lớn).",
+                steps: [
+                  "Góc ở tâm AOB = số đo cung AB = 120°",
+                  "Góc nội tiếp ACB = ½ · sđ(cung AB) = ½ · 120° = 60°",
+                ],
+                answer: "∠AOB = 120°; ∠ACB = 60°",
+              },
+            ],
           },
         ],
       },
+
+      // ═══════════════════════════════════════════════════════
+      // CHƯƠNG 7: HÌNH TRỤ – HÌNH NÓN – HÌNH CẦU
+      // ═══════════════════════════════════════════════════════
       {
         id: "hinh-khong-gian",
-        title: "Chương 5: Hình trụ – Hình nón – Hình cầu",
-        description: "Diện tích và thể tích các hình không gian",
+        title: "Chương 7: Hình trụ – Hình nón – Hình cầu",
+        description: "Công thức diện tích và thể tích các hình không gian",
         topics: [
           {
             title: "Hình trụ",
-            theory: ["Hình trụ có 2 đáy là hình tròn bằng nhau, song song nhau"],
+            theory: [
+              "Hình trụ: 2 đáy là hai hình tròn bằng nhau, song song; chiều cao h nối hai tâm",
+              "Bán kính đáy R, chiều cao h",
+              "Diện tích xung quanh = chu vi đáy × chiều cao",
+              "Khi trải ra: hình chữ nhật 2πR × h",
+            ],
             formulas: [
-              "Sxq = 2πRh (diện tích xung quanh)",
-              "Stoàn phần = 2πR(R + h)",
+              "Sxq = 2πRh",
+              "Stp = 2πR(R + h)",
               "V = πR²h",
             ],
-            videoTitle: "Hình trụ hình nón hình cầu lớp 9",
-            videoUrl: ytSearch("hình trụ hình nón hình cầu lớp 9 công thức"),
+            videoTitle: "Hình trụ – Diện tích thể tích lớp 9",
+            videoUrl: ytSearch("hình trụ diện tích thể tích lớp 9"),
+            exercises: [
+              {
+                problem: "Hình trụ có R = 3cm, h = 8cm. Tính Sxq, Stp và V.",
+                steps: [
+                  "Sxq = 2π·3·8 = 48π ≈ 150,8 cm²",
+                  "Stp = 2π·3·(3+8) = 66π ≈ 207,3 cm²",
+                  "V = π·3²·8 = 72π ≈ 226,2 cm³",
+                ],
+                answer: "Sxq = 48π cm²; Stp = 66π cm²; V = 72π cm³",
+              },
+            ],
           },
           {
-            title: "Hình nón và Hình cầu",
-            theory: ["Hình nón: đáy tròn, đỉnh, đường sinh l", "Hình cầu: bán kính R"],
-            formulas: [
-              "Snón xq = πRl",
-              "Vnón = (1/3)πR²h",
-              "Scầu = 4πR²",
-              "Vcầu = (4/3)πR³",
+            title: "Hình nón",
+            theory: [
+              "Hình nón: đáy là hình tròn bán kính R, đỉnh S, chiều cao h, đường sinh l",
+              "Quan hệ: l² = R² + h²",
+              "Diện tích xung quanh = ½ × chu vi đáy × đường sinh",
             ],
-            videoTitle: "Hình nón hình cầu lớp 9 công thức diện tích thể tích",
-            videoUrl: ytSearch("hình nón hình cầu lớp 9 diện tích thể tích"),
+            formulas: [
+              "l² = R² + h²",
+              "Sxq = πRl",
+              "Stp = πR(R + l)",
+              "V = (1/3)πR²h",
+            ],
+            videoTitle: "Hình nón – Diện tích thể tích lớp 9",
+            videoUrl: ytSearch("hình nón diện tích thể tích lớp 9"),
+            exercises: [
+              {
+                problem: "Hình nón có R = 5cm, h = 12cm. Tính đường sinh l, Sxq và V.",
+                steps: [
+                  "l = √(R²+h²) = √(25+144) = √169 = 13cm",
+                  "Sxq = π·5·13 = 65π ≈ 204,2 cm²",
+                  "V = (1/3)π·5²·12 = 100π ≈ 314,2 cm³",
+                ],
+                answer: "l = 13cm; Sxq = 65π cm²; V = 100π cm³",
+              },
+            ],
+          },
+          {
+            title: "Hình cầu",
+            theory: [
+              "Hình cầu tâm O, bán kính R: tập hợp điểm cách O đúng R trong không gian",
+              "Diện tích mặt cầu = 4 lần diện tích hình tròn lớn nhất",
+            ],
+            formulas: [
+              "S = 4πR²",
+              "V = (4/3)πR³",
+            ],
+            videoTitle: "Hình cầu – Diện tích thể tích lớp 9",
+            videoUrl: ytSearch("hình cầu diện tích thể tích lớp 9"),
+            exercises: [
+              {
+                problem: "Quả bóng tròn có đường kính 20cm. Tính diện tích bề mặt và thể tích.",
+                steps: [
+                  "R = 10cm",
+                  "S = 4π·10² = 400π ≈ 1256,6 cm²",
+                  "V = (4/3)π·10³ = 4000π/3 ≈ 4188,8 cm³",
+                ],
+                answer: "S = 400π cm²; V = 4000π/3 cm³",
+              },
+            ],
           },
         ],
       },

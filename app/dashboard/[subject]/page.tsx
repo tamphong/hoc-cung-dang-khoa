@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import Navbar from "@/components/NavbarServer";
 import Footer from "@/components/Footer";
 import SubjectTabNav from "@/components/SubjectTabNav";
+import ExerciseCard from "@/components/ExerciseCard";
 import { getLessonContent } from "@/lib/lesson-content";
 
 export default async function SubjectPage({
@@ -190,6 +191,25 @@ export default async function SubjectPage({
                                 )}
                               </div>
                             </div>
+
+                            {/* Exercises */}
+                            {topic.exercises && topic.exercises.length > 0 && (
+                              <div className="mt-4 pt-4 border-t border-slate-100">
+                                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3">
+                                  Bài tập luyện tập ({topic.exercises.length} bài)
+                                </div>
+                                <div className="space-y-3">
+                                  {topic.exercises.map((ex, ei) => (
+                                    <ExerciseCard
+                                      key={ei}
+                                      exercise={ex}
+                                      index={ei + 1}
+                                      color={subject.color}
+                                    />
+                                  ))}
+                                </div>
+                              </div>
+                            )}
                           </div>
                         ))}
                       </div>
